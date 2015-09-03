@@ -6,7 +6,7 @@
   <ol>
   <%sorted_posts = @all_posts.sort_by {|post| -post.count}%>
   <% sorted_posts.each do |post| %>
-    <li><a href="<%=post.url%>"><%=post.title%></a><% if current_user%><form action="/post/<%=post.id%>/vote" method="POST"><input type="submit" value="Vote"></form><%end%><br><p>Votes: <%=post.count%> | Submitted by: <%=post.user.name%> at <%=post.created_at.strftime("%Y-%m-%d")%>| <a href="/post/<%=post.id%>">Comments: <%=post.comments.size%></a> </p></li>
+    <li><a href="<%=post.url%>"><%=post.title%></a><% if current_user%><form action="/post/<%=post.id%>/vote" method="POST"><input class ="vote" type="submit" value="Vote"></form><%end%><br><p>Votes: <span><%=post.count%></span> | Submitted by: <%=post.user.name%> at <%=post.created_at.strftime("%Y-%m-%d")%>| <a href="/post/<%=post.id%>">Comments: <%=post.comments.size%></a></p></li>
   <%end%>
   </ol>
 <%end%>

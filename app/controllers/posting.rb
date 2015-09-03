@@ -17,6 +17,10 @@ post '/post/:id/vote' do
 @post = Post.find(params[:id])
   unless @post.vote(current_user)
   	redirect to ("/?error=You've already voted for this post, loser!")
+  end
+
+  if request.xhr?
+  	return {votes: @post.count}.to_json
   else
 	redirect '/'
   end
