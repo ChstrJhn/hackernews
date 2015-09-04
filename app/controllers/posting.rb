@@ -21,6 +21,9 @@ post '/post/:id/vote' do
 
   if request.xhr?
   	return {votes: @post.count}.to_json
+  	if @post.voters.include?(current_user)
+  		redirect to ("/?error=You've already voted for this post, loser!")
+  	end
   else
 	redirect '/'
   end
